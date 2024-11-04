@@ -42,34 +42,8 @@ namespace ApiInmobiliaria.Controllers
 
         }
 
-        // POST: api/Propietarios
-        [HttpPost]
-        public async Task<ActionResult<Propietario>> PostPropietario([FromBody] Propietario propietario)
-        {
-            if (ModelState.IsValid)
-            {
-                // Hash de la clave utilizando el mismo salt
-                if (!string.IsNullOrEmpty(propietario.Clave))
-                {
-                    var salt = Encoding.ASCII.GetBytes(_configuration["Salt"]); // Obtener el salt de la configuración
-                    propietario.Clave = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                        password: propietario.Clave,
-                        salt: salt,
-                        prf: KeyDerivationPrf.HMACSHA1,
-                        iterationCount: 1000,
-                        numBytesRequested: 256 / 8));
-                }
+       
 
-                _context.Propietarios.Add(propietario);
-                await _context.SaveChangesAsync();
-
-                return CreatedAtAction(nameof(GetPropietario), new { id = propietario.IdPropietario }, propietario);
-            }
-
-            return BadRequest(ModelState);
-        }
-
-        // GET: api/Propietarios/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Propietario>> GetPropietario(int id)
         {
