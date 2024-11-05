@@ -42,7 +42,7 @@ namespace ApiInmobiliaria.Controllers
 
         }
 
-       
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Propietario>> GetPropietario(int id)
@@ -485,16 +485,7 @@ namespace ApiInmobiliaria.Controllers
             }
         }
 
-
-
-
-
     }
-
-
-
-
-
 
 
     // CLASES AUXILIARES para Login y para CambiarPass 
