@@ -382,7 +382,8 @@ namespace ApiInmobiliaria.Controllers
 
                 // Obtener el dominio o la IP
                 var dominio = environment.IsDevelopment() ? HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString() : "www.misitio.com";
-
+            
+                Console.WriteLine("domininio: " + dominio);
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
                 // Contenido del correo de restablecimiento
@@ -403,6 +404,7 @@ namespace ApiInmobiliaria.Controllers
                 return BadRequest($"Error al generar el token o enviar el correo: {ex.Message}");
             }
         }
+
 
 
         [HttpPost("confirmarRestablecerClave")]
